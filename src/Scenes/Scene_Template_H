@@ -1,0 +1,34 @@
+#pragma once
+
+#include "SceneBase.h"
+
+
+class Scene_ : public SceneBase
+{
+ public:
+  Scene_(sf::RenderWindow& game_window, sf::Music& game_music);
+  ~Scene_() override;
+
+  bool init(Game* game);
+  bool shutDown();
+  void keyPressed(Game* game, sf::Event event);
+  void keyReleased(Game* game, sf::Event event);
+  void mouseClicked(Game* game, sf::Event event);
+  void joystickInput(Game* game, sf::Event event);
+  void update(Game* game);
+  void render(Game* game);
+
+  bool is_loaded = false;
+
+ private:
+  //Global references
+  sf::RenderWindow& window;
+  sf::Music& music;
+
+  //Camera
+  sf::View camera = sf::View(sf::FloatRect(0,0,1080,720));
+
+  //Next Scene
+  Scenes next_scene;
+
+};
